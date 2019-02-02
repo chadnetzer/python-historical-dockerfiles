@@ -1,0 +1,23 @@
+# Patch taken from: https://bugs.python.org/issue20594
+# Author ncopa
+#
+--- python.orig/Modules/posixmodule.c
++++ python/Modules/posixmodule.c
+@@ -991,7 +991,7 @@
+ }
+ 
+ static object *
+-posix_close(self, args)
++py_posix_close(self, args)
+ 	object *self;
+ 	object *args;
+ {
+@@ -1239,7 +1239,7 @@
+ 	{"tcsetpgrp",	posix_tcsetpgrp},
+ #endif
+ 	{"open",	posix_open},
+-	{"close",	posix_close},
++	{"close",	py_posix_close},
+ 	{"dup",		posix_dup},
+ 	{"dup2",	posix_dup2},
+ 	{"lseek",	posix_lseek},
