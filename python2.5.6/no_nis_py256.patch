@@ -1,0 +1,26 @@
+--- python.orig/setup.py
++++ python/setup.py
+@@ -903,23 +903,6 @@
+             exts.append( Extension('gdbm', ['gdbmmodule.c'],
+                                    libraries = ['gdbm'] ) )
+
+-        # Unix-only modules
+-        if platform not in ['mac', 'win32']:
+-            # Steen Lumholt's termios module
+-            exts.append( Extension('termios', ['termios.c']) )
+-            # Jeremy Hylton's rlimit interface
+-            if platform not in ['atheos']:
+-                exts.append( Extension('resource', ['resource.c']) )
+-
+-            # Sun yellow pages. Some systems have the functions in libc.
+-            if platform not in ['cygwin', 'atheos']:
+-                if (self.compiler.find_library_file(lib_dirs, 'nsl')):
+-                    libs = ['nsl']
+-                else:
+-                    libs = []
+-                exts.append( Extension('nis', ['nismodule.c'],
+-                                       libraries = libs) )
+-
+         # Curses support, requiring the System V version of curses, often
+         # provided by the ncurses library.
+         panel_library = 'panel'
