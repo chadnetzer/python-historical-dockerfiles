@@ -8,8 +8,8 @@ ENV PATH /usr/local/bin:$PATH
 # other runtime dependencies for Python are installed later
 RUN apk add --no-cache ca-certificates
 
-ENV GPG_KEY C01E1CAD5EA2C4F0B8E3571504C367C218ADD4FF
-ENV PYTHON_VERSION 2.7.15
+ENV GPG_KEY 8417157EDBE73D9EAC1E539B126EB563A74B06BF
+ENV PYTHON_VERSION 2.6.9
 
 RUN set -ex \
 	&& apk update \
@@ -55,8 +55,12 @@ RUN set -ex \
 # add build deps before removing fetch deps in case there's overlap
 	&& apk del .fetch-deps
 
+COPY posix_close_py269.patch /tmp/posix_close.patch
+COPY no_nis_py269.patch /tmp/no_nis.patch
 RUN set -ex \
 	&& cd /usr/src/python \
+	&& patch -p1 < /tmp/posix_close.patch \
+	&& patch -p1 < /tmp/no_nis.patch \
 	&& gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" \
 	&& ./configure \
 		--build="$gnuArch" \
@@ -82,7 +86,7 @@ RUN set -ex \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
 		\) -exec rm -rf '{}' + \
 	\
-	&& python2 --version
+	&& python --version
 
 
 FROM alpine:latest
@@ -96,4 +100,4 @@ RUN apk add --no-cache ca-certificates
 
 COPY --from=builder /usr/local /usr/local/
 
-CMD ["python2"]
+CMD ["python"]
