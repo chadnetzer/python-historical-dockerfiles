@@ -1,0 +1,23 @@
+# Patch taken from: https://bugs.python.org/issue20594
+# Author ncopa
+#
+--- python.orig/Modules/posixmodule.c
++++ python/Modules/posixmodule.c
+@@ -2332,7 +2332,7 @@
+ Close a file descriptor (for low level IO).";
+ 
+ static PyObject *
+-posix_close(self, args)
++py_posix_close(self, args)
+ 	PyObject *self;
+ 	PyObject *args;
+ {
+@@ -3242,7 +3242,7 @@
+ 	{"tcsetpgrp",	posix_tcsetpgrp, 0, posix_tcsetpgrp__doc__},
+ #endif /* HAVE_TCSETPGRP */
+ 	{"open",	posix_open, 1, posix_open__doc__},
+-	{"close",	posix_close, 0, posix_close__doc__},
++	{"close",	py_posix_close, 0, posix_close__doc__},
+ 	{"dup",		posix_dup, 0, posix_dup__doc__},
+ 	{"dup2",	posix_dup2, 0, posix_dup2__doc__},
+ 	{"lseek",	posix_lseek, 0, posix_lseek__doc__},
