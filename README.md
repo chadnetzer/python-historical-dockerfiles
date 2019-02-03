@@ -24,6 +24,18 @@ cd python2.3
 docker build -t $(basename $PWD) .
 ```
 
+### Usage
+
+To start built image interactively and to have the container removed after the session is finished, do something like:
+
+```
+$ docker run -it --rm python2.3
+```
+
+For more information, you can look at the official DockerHub Python pages for ideas on how the up-to-date releases can be used.
+
+https://hub.docker.com/_/python/
+
 ## TODO
 
 * Getting the interpreter history buffer and editing (ie. readline) to work on versions pre-v2.4
