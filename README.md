@@ -7,9 +7,9 @@ These are some Dockerfiles I'm writing to easily run older Python versions.  My 
 Some of the things these containers can demonstrate are:
 
 * Older split between ints and longs
- * `(sys.maxint + 1)`  -->  OverflowError in pre-v2.2
- * `1 << 63`  -->  -9223372036854775808 in prev2.4 (64 bit systems)
- * `10**100`  -->  0 in pre-v2.5
+    * `(sys.maxint + 1)`  -->  OverflowError in pre-v2.2
+    * `1 << 63`  -->  -9223372036854775808 in prev2.4 (64 bit systems)
+    * `10**100`  -->  0 in pre-v2.5
 * None being assignable (SyntaxWarning in python2.3, but assignable)
 * bool types being assignable (pre-Python 3), or non-existent (pre-v2.2)
 * Older string module functions (pre-v2.2)
