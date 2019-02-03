@@ -22,7 +22,9 @@ RUN set -ex \
 	#&& wget -O KRUD-GPG-KEY "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/rpms/KRUD-GPG-KEY" \
 	# Use key downloaded from different location than tarball, just to be paranoid
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
+	&&  (gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
+	  || gpg --batch --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" \
+	  || gpg --batch --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ) \
 	&& gpg --armor --export $GPG_KEY >KRUD-GPG-KEY \
 	&& rpm --import KRUD-GPG-KEY \
 	&& rpm -K python.src.rpm \

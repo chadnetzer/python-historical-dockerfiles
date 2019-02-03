@@ -20,7 +20,9 @@ RUN set -ex \
 	&& wget -O python.tar.bz2 "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.bz2" \
 	&& wget -O python.tar.bz2.asc "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.bz2.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
+	&&  (gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
+	  || gpg --batch --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" \
+	  || gpg --batch --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ) \
 	&& gpg --batch --verify python.tar.bz2.asc python.tar.bz2 \
 	&& { command -v gpgconf > /dev/null && gpgconf --kill all || :; } \
 	&& rm -rf "$GNUPGHOME" python.tar.bz2.asc \

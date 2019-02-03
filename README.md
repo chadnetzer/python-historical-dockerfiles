@@ -24,9 +24,6 @@ cd python2.3
 docker build -t $(basename $PWD) .
 ```
 
-Note, sometimes the later versions using signed tarballs can fail to build if/when they fail to download a signing key, but generally you can just try again.
-
-
 ## License
 
 These Dockerfiles are released under the MIT license.  They were based on the MIT licensed Alpine build of the Docker Python 2.7.15 image.
