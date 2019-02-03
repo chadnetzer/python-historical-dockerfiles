@@ -24,6 +24,10 @@ cd python2.3
 docker build -t $(basename $PWD) .
 ```
 
+## TODO
+
+* Getting the interpreter history buffer and editing (ie. readline) to work on versions pre-v2.4
+
 ## License
 
 These Dockerfiles are released under the MIT license.  They were based on the MIT licensed Alpine build of the Docker Python 2.7.15 image.
