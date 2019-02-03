@@ -4,18 +4,17 @@ FROM alpine:latest as builder
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 
-# install ca-certificates so that HTTPS works consistently
-# other runtime dependencies for Python are installed later
-RUN apk add --no-cache ca-certificates
-
 # These older releases aren't signed, but have published MD5 sums on the
 # python.org website.  I have taken this MD5 sum from:
 # https://www.python.org/download/releases/2.0.1/
 ENV MD5_SUM 23f9d7cba017e0df1752377b514b0bbe
 ENV PYTHON_VERSION 1.3
 
+# install ca-certificates so that HTTPS works consistently
+# other runtime dependencies for Python are installed later
 RUN set -ex \
 	&& apk update \
+	&& apk add --no-cache ca-certificates \
 	&& apk add --no-cache --virtual .fetch-deps \
 		tar \
 	\
@@ -44,13 +43,12 @@ RUN set -ex \
 		ncurses-dev \
 		pax-utils \
 		readline-dev \
+		readline \
 		sqlite-dev \
 		tcl-dev \
 		tk \
 		tk-dev \
-		zlib-dev \
-# add build deps before removing fetch deps in case there's overlap
-	&& apk del .fetch-deps
+		zlib-dev
 
 COPY posix_close_py14.patch /tmp/posix_close.patch
 COPY py_getline_14.patch /tmp/py_getline.patch
@@ -77,8 +75,6 @@ RUN set -ex \
 		| sort -u \
 		| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
 		| xargs -rt apk add --no-cache --virtual .python-rundeps \
-	&& apk del .build-deps \
-	\
 	&& find /usr/local -depth \
 		\( \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
@@ -92,9 +88,10 @@ FROM alpine:latest
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 
-# install ca-certificates so that HTTPS works consistently
-# other runtime dependencies for Python are installed later
-RUN apk add --no-cache ca-certificates
+RUN set -ex \
+	&& apk update \
+	&& apk add --no-cache ca-certificates \
+		readline
 
 COPY --from=builder /usr/local /usr/local/
 

@@ -4,15 +4,14 @@ FROM alpine:latest as builder
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 
-# install ca-certificates so that HTTPS works consistently
-# other runtime dependencies for Python are installed later
-RUN apk add --no-cache ca-certificates
-
 ENV GPG_KEY CBC547978A3964D14B9AB36A6AF053F07D9DC8D2
 ENV PYTHON_VERSION 2.5.6
 
+# install ca-certificates so that HTTPS works consistently
+# other runtime dependencies for Python are installed later
 RUN set -ex \
 	&& apk update \
+	&& apk add --no-cache ca-certificates \
 	&& apk add --no-cache --virtual .fetch-deps \
 		gnupg \
 		tar \
@@ -47,13 +46,12 @@ RUN set -ex \
 		ncurses-dev \
 		pax-utils \
 		readline-dev \
+		readline \
 		sqlite-dev \
 		tcl-dev \
 		tk \
 		tk-dev \
-		zlib-dev \
-# add build deps before removing fetch deps in case there's overlap
-	&& apk del .fetch-deps
+		zlib-dev
 
 COPY posix_close_py256.patch /tmp/posix_close.patch
 COPY no_nis_py256.patch /tmp/no_nis.patch
@@ -79,8 +77,6 @@ RUN set -ex \
 		| sort -u \
 		| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
 		| xargs -rt apk add --no-cache --virtual .python-rundeps \
-	&& apk del .build-deps \
-	\
 	&& find /usr/local -depth \
 		\( \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
@@ -94,9 +90,10 @@ FROM alpine:latest
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 
-# install ca-certificates so that HTTPS works consistently
-# other runtime dependencies for Python are installed later
-RUN apk add --no-cache ca-certificates
+RUN set -ex \
+	&& apk update \
+	&& apk add --no-cache ca-certificates \
+		readline
 
 COPY --from=builder /usr/local /usr/local/
 
