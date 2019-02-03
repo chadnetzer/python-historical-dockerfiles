@@ -7,6 +7,8 @@ ENV PATH /usr/local/bin:$PATH
 ENV GPG_KEY 8417157EDBE73D9EAC1E539B126EB563A74B06BF
 ENV PYTHON_VERSION 2.6.9
 
+COPY pgp_keys_A74B06BF.asc /tmp/pgp_keys.asc
+
 # install ca-certificates so that HTTPS works consistently
 # other runtime dependencies for Python are installed later
 RUN set -ex \
@@ -20,9 +22,10 @@ RUN set -ex \
 	&& wget -O python.tar.xz "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz" \
 	&& wget -O python.tar.xz.asc "https://www.python.org/ftp/python/${PYTHON_VERSION%%[a-z]*}/Python-$PYTHON_VERSION.tar.xz.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" \
-	&&  (gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
-	  || gpg --batch --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" \
-	  || gpg --batch --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ) \
+	#&&  (gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
+	#  || gpg --batch --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" \
+	#  || gpg --batch --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ) \
+	&& gpg --batch --import /tmp/pgp_keys.asc \
 	&& gpg --batch --verify python.tar.xz.asc python.tar.xz \
 	&& { command -v gpgconf > /dev/null && gpgconf --kill all || :; } \
 	&& rm -rf "$GNUPGHOME" python.tar.xz.asc \

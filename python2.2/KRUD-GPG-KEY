@@ -1,0 +1,31 @@
+The following public key can be used to verify RPM packages built and
+signed by KRUD using `rpm -K' using the GNU GPG package. 
+Questions about this key should be sent to krud@tummy.com.
+Use this to verify all updates and KRUD added packages. 
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.0.2 (GNU/Linux)
+Comment: For info see http://www.gnupg.org
+
+mQGiBDnkxWYRBACrRuBWG6RX/EIqS8kXEPE9Ir/jcLjeF3FzyZj+AXOZwtkf9H5N
+cWjo2Lm3Icp1/3bBWSLGjnOXbxvBk1/USouBxhi5QhD7PvorEoMRybq1S2nigS0X
+ydtJbl7PIyNiqGs2obEzygKwWXxbCwIzQz2YtQfXnOiv0z5JLQn08J4AVwCgwiuQ
+JzqBTiPubiUkywAHFqhc9HUD/RIWWJFNm4iP8KExsOclM78DFhfjtneE3mLpvYPM
+vFkKeiQzB4QAdmrX+pwWXdCZLI8WC5N0OE0ocTcyOsUSL1e44g2S9sn2Geh8p21Z
++YAByIOsKe3VoaOpwwHBMAt5sHqIHq/YXDJEdxUPkY1YXoXZkWVRDyGRuVZ/+P2g
+lDOqA/4tDbAiRSM2Y4th+MTheQmd1F9WaK+QMqjEUgjceUdus/D4nTS94FK5Q4XR
+tXKtQQTe+jzUClFly25dWWYoCCnRTXPkihyg4pyl1GsZq24FfsbiMB2uevZIC18f
++ViENmOEZbY6nxV03Y9mHPVqfIzUbBxxmxYsHv2lzeiFF94qkLRcS2V2aW5zIFJl
+ZGhhdCBVYmVyIERpc3RyaWJ1dGlvbiAoVGhpcyBpcyB0aGUgS1JVRCBrZXkgZm9y
+IHNpZ25pbmcgcGFja2FnZXMpIDxrcnVkQHR1bW15LmNvbT6IVgQTEQIAFgUCOeTF
+ZgQLCgQDAxUDAgMWAgECF4AACgkQW4+e2/1xspegvwCeLhH9VAcnNYZQzyVu4ive
+g68dtJ0AoJbFWXx9L2gWcUndgKEZsO8YSMyfuQENBDnkxWgQBADAXxZRD1TXNZ9a
+I7kOKzb/wEh2lGJE66iI8pbzhgcRU5qrYldke9ZFIYYqpH/h+4KhVWLmSd5KG5lZ
+wGzWYFfZ4aGSfQWTIhFaCzpy6fPDPLnIWQWjM3RyFXUfTxn3YndR3AdkO3QxS98/
+Gaz3NLFREN4Imm/v+3rLFljUWw2frwADBQP+NHIQ4M336bRjnmIEkXgA4lrRxZOc
+7i7KXBpLh8HkRAyvqOHsMdoWjQcvFKzOgkOoeR58NNeprOxnmxIbX4tZvI8KKbbV
+mOGwy0XqyBTCXwOjr3L/gWyjGwfw22zgcSv1NYQwx7O1BV8QM3cZuF7mMZndau/I
+KDI13O6nLSZZJY2IRgQYEQIABgUCOeTFaAAKCRBbj57b/XGyl2vsAJ0WBxDclqrD
+gFumUvAi0sIm5LNN4wCcC24gY7+aApCnKh7q9rQNSq9wWBQ=
+=dv8I
+-----END PGP PUBLIC KEY BLOCK-----
