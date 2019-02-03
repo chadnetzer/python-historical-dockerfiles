@@ -1,6 +1,8 @@
 ## Dockerfiles for older Python versions
 
-These are some Dockerfiles I'm writing to easily run older Python versions.  My main goal is to make it easier to demonstrate older Python behaviors when tutoring or answering questions for learners.  It is *not* my goal to produce containers for any sort of production usage, or for running older Python programs, etc.  **Please** do not rely on the containers produced here for anything other than educational tinkering. :)
+These are some Dockerfiles I'm writing to easily run older Python versions.  My main goal is to make it easier to demonstrate older Python behaviors when tutoring or answering questions for learners.  It is *not* my goal to produce containers for any sort of production usage, or for running older Python programs, or even scripts, etc.
+
+**Please** do not rely on the containers produced here for anything other than educational tinkering and nostalgia. :)
 
 Some of the things these containers can demonstrate are:
 
@@ -12,12 +14,13 @@ Some of the things these containers can demonstrate are:
 * bool types being assignable (pre-Python 3), or non-existent (pre-v2.2)
 * Older string module functions (pre-v2.2)
 * Pre-iterator file line looping.
+* Only single-quoted string constants allowed (pre-v1.0)
 * And probably more that I'll think of later...
 
 
-## Building
+### Building
 
-`cd` to a directory with a Dockerfile and run docker build, ie.:
+`cd` to a directory with a Dockerfile (for example, python2.3), and run docker build, ie.:
 
 ```
 cd python2.3
@@ -36,10 +39,15 @@ For more information, you can look at the official DockerHub Python pages for id
 
 https://hub.docker.com/_/python/
 
-## TODO
+
+#### Contributing/Suggestions
+
+Feel free to open issues if you find problems with standard modules not working, or have any ideas for things you'd like to make better.
+
+#### TODO
 
 * Getting the interpreter history buffer and editing (ie. readline) to work on versions pre-v2.4
 
-## License
+#### License
 
 These Dockerfiles are released under the MIT license.  They were based on the MIT licensed Alpine build of the Docker Python 2.7.15 image.
