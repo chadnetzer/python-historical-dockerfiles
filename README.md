@@ -1,8 +1,10 @@
-## Dockerfiles for older Python versions
+## Dockerfiles for older Python versions (and pre-releases)
 
 These are some Dockerfiles I'm writing to easily run older Python versions.  My main goal is to make it easier to demonstrate older Python behaviors when tutoring or answering questions for learners.  It is *not* my goal to produce containers for any sort of production usage, or for running older Python programs, or even scripts, etc.
 
 **Please** do not rely on the containers produced here for anything other than educational tinkering and nostalgia. :)
+
+Also, mainly for my own usage, I'll build and publish some alpha/beta releases in their own branches, until the official releases make their way to the Python DockerHub account.  Again, these pre-releases should not be considered for any use other than curiosity.
 
 Some of the things these containers can demonstrate are:
 
