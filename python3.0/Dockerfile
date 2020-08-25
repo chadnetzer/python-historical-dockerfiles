@@ -49,6 +49,7 @@ RUN set -ex \
 		linux-headers \
 		make \
 		ncurses-dev \
+		patch \
 		pax-utils \
 		readline-dev \
 		readline \
