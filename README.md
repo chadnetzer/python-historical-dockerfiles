@@ -17,6 +17,12 @@ Some of the things these containers can demonstrate are:
 * Only single-quoted string constants allowed (pre-v1.0)
 * And probably more that I'll think of later...
 
+This original project has grown to include "newer" versions of Python as well,
+including those that are also in Dockerhub (such as Python 2.7, and Python
+3.2+).  You should absolutely use those docker images instead of these if/when
+they are available.  I mainly added support more recent versions for my own
+personal testing, and am not supporting them for anything more than tinkering,
+alpha-release testing, an so on.
 
 ### Building
 
